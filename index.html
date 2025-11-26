@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PowerFit - Transform your body with premium gym facilities, expert personal training, wellness classes, and state-of-the-art equipment. Join the UK's leading fitness community today.">
+  <title>PowerFit - Premium Gym & Fitness Centre</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Header with Navigation -->
+  <header class="header">
+    <nav class="navbar">
+      <div class="nav-container container">
+        <div class="logo">PowerFit</div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav-menu" id="navMenu" role="navigation">
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#services" class="nav-link">Services</a></li>
+          <li><a href="#classes" class="nav-link">Classes</a></li>
+          <li><a href="#membership" class="nav-link">Membership</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <span class="theme-icon">🌙</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section id="home" class="hero reveal">
+      <div class="hero-background">
+        <div class="hero-overlay"></div>
+      </div>
+      <div class="hero-content container">
+        <div class="hero-text">
+          <h1 class="hero-title">Transform Your Body</h1>
+          <p class="hero-subtitle">Build strength, confidence, and a healthier lifestyle at PowerFit</p>
+          <button class="btn cta-btn" onclick="document.getElementById('membership').scrollIntoView({behavior: 'smooth'})">Get
+            Started Today</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services reveal">
+      <div class="container">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-grid grid">
+          <div class="service-card card">
+            <div class="service-icon">🏋️</div>
+            <h3>State-of-the-Art Equipment</h3>
+            <p>Latest strength training machines and free weights for all fitness levels</p>
+          </div>
+          <div class="service-card card">
+            <div class="service-icon">👨‍🏫</div>
+            <h3>Personal Training</h3>
+            <p>Expert trainers providing customized workout plans and guidance</p>
+          </div>
+          <div class="service-card card">
+            <div class="service-icon">🧘</div>
+            <h3>Wellness Classes</h3>
+            <p>Yoga, Pilates, and meditation sessions for mental and physical wellbeing</p>
+          </div>
+          <div class="service-card card">
+            <div class="service-icon">🏊</div>
+            <h3>Olympic Pool</h3>
+            <p>25m heated swimming pool with dedicated lap lanes and aqua aerobics</p>
+          </div>
+          <div class="service-card card">
+            <div class="service-icon">🧖</div>
+            <h3>Spa & Sauna</h3>
+            <p>Relax and recover with our premium sauna and steam room facilities</p>
+          </div>
+          <div class="service-card card">
+            <div class="service-icon">🍎</div>
+            <h3>Nutritional Coaching</h3>
+            <p>Personalized meal plans and nutrition advice from certified dietitians</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Classes Section -->
+    <section id="classes" class="classes reveal">
+      <div class="container">
+        <h2 class="section-title">Popular Classes</h2>
+        <div class="classes-grid grid">
+          <div class="class-card card">
+            <h3>HIIT Training</h3>
+            <p>High-intensity interval training for maximum calorie burn</p>
+            <p class="class-time">Mon, Wed, Fri - 6:30 PM</p>
+          </div>
+          <div class="class-card card">
+            <h3>Spinning</h3>
+            <p>Indoor cycling with motivating music and challenging routines</p>
+            <p class="class-time">Tue, Thu, Sat - 7:00 PM</p>
+          </div>
+          <div class="class-card card">
+            <h3>CrossFit</h3>
+            <p>Functional fitness combining weightlifting, gymnastics, and cardio</p>
+            <p class="class-time">Daily - Various times</p>
+          </div>
+          <div class="class-card card">
+            <h3>Yoga Flow</h3>
+            <p>Enhance flexibility, strength, and inner peace</p>
+            <p class="class-time">Mon, Wed - 9:00 AM</p>
+          </div>
+          <div class="class-card card">
+            <h3>Boxing Bootcamp</h3>
+            <p>Learn boxing techniques while building endurance and power</p>
+            <p class="class-time">Tue, Thu - 6:00 PM</p>
+          </div>
+          <div class="class-card card">
+            <h3>Zumba Dance</h3>
+            <p>Fun, energetic dance workout to Latin rhythms</p>
+            <p class="class-time">Sat, Sun - 5:00 PM</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Membership Section -->
+    <section id="membership" class="membership reveal">
+      <div class="container">
+        <h2 class="section-title">Membership Plans</h2>
+        <div class="membership-grid grid">
+          <div class="membership-card card">
+            <h3>Basic</h3>
+            <p class="price">£29<span>/month</span></p>
+            <ul class="features">
+              <li>✓ Gym access</li>
+              <li>✓ Equipment training</li>
+              <li>✓ Locker room</li>
+              <li>✗ Classes</li>
+              <li>✗ Personal trainer</li>
+            </ul>
+            <button class="btn membership-btn">Choose Plan</button>
+          </div>
+          <div class="membership-card card featured">
+            <div class="badge">Most Popular</div>
+            <h3>Premium</h3>
+            <p class="price">£49<span>/month</span></p>
+            <ul class="features">
+              <li>✓ Gym access</li>
+              <li>✓ All classes</li>
+              <li>✓ Pool access</li>
+              <li>✓ Sauna & steam room</li>
+              <li>✗ Personal trainer</li>
+            </ul>
+            <button class="btn membership-btn featured-btn">Choose Plan</button>
+          </div>
+          <div class="membership-card card">
+            <h3>Elite</h3>
+            <p class="price">£79<span>/month</span></p>
+            <ul class="features">
+              <li>✓ All Premium benefits</li>
+              <li>✓ Personal trainer</li>
+              <li>✓ Nutrition coaching</li>
+              <li>✓ Priority booking</li>
+              <li>✓ Guest passes</li>
+            </ul>
+            <button class="btn membership-btn">Choose Plan</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats reveal">
+      <div class="container">
+        <div class="stat-item">
+          <h3 class="stat-number" data-target="5000">5,000+</h3>
+          <p>Active Members</p>
+        </div>
+        <div class="stat-item">
+          <h3 class="stat-number" data-target="50">50+</h3>
+          <p>Weekly Classes</p>
+        </div>
+        <div class="stat-item">
+          <h3 class="stat-number" data-target="25">25+</h3>
+          <p>Expert Trainers</p>
+        </div>
+        <div class="stat-item">
+          <h3 class="stat-number" data-target="15">15</h3>
+          <p>Years in Business</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact reveal">
+      <div class="container">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-content">
+          <div class="contact-info">
+            <div class="info-card card">
+              <h4>📍 Address</h4>
+              <p>123 Fitness Street<br>Manchester, UK M1 5AN</p>
+            </div>
+            <div class="info-card card">
+              <h4>📞 Phone</h4>
+              <p>+44 (0)161 123 4567</p>
+            </div>
+            <div class="info-card card">
+              <h4>✉️ Email</h4>
+              <p>info@powerfit.co.uk</p>
+            </div>
+            <div class="info-card card">
+              <h4>🕐 Hours</h4>
+              <p>Mon-Fri: 6:00 AM - 10:00 PM<br>Sat-Sun: 8:00 AM - 8:00 PM</p>
+            </div>
+          </div>
+          <form class="contact-form" id="contactForm">
+            <input type="text" placeholder="Your Name" required aria-label="Your name">
+            <input type="email" placeholder="Your Email" required aria-label="Your email address">
+            <textarea placeholder="Your Message" rows="5" required aria-label="Your message"></textarea>
+            <button type="submit" class="btn submit-btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 PowerFit Gym. All rights reserved.</p>
+      <div class="social-links">
+        <a href="#" class="social-link">Facebook</a>
+        <a href="#" class="social-link">Instagram</a>
+        <a href="#" class="social-link">Twitter</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
