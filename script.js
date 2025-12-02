@@ -1,7 +1,255 @@
 /**
  * PowerFit Gym Website - Enhanced JavaScript
- * Features: Mobile menu toggle, Theme persistence, Scroll reveal animations
+ * Features: Mobile menu toggle, Theme persistence, Scroll reveal animations, Hero Carousel
  */
+
+// ========================================
+// Hero Carousel
+// ========================================
+
+const heroCarousel = {
+  // Configuration constants
+  AUTOPLAY_DELAY: 5000,           // Auto-advance interval in ms
+  TRANSITION_DURATION: 600,        // Slide transition duration in ms (matches CSS)
+  LAZY_LOAD_ROOT_MARGIN: '200px',  // IntersectionObserver root margin
+  ALT_TEXT_MAX_LENGTH: 60,         // Max characters for live region announcements
+  
+  slides: [],
+  dots: [],
+  currentIndex: 0,
+  autoplayInterval: null,
+  isPaused: false,
+  liveRegion: null,
+  
+  init() {
+    this.slides = document.querySelectorAll('.carousel-slide');
+    this.dots = document.querySelectorAll('.carousel-dot');
+    this.liveRegion = document.querySelector('.carousel-live-region');
+    
+    if (this.slides.length === 0) return;
+    
+    // Preload first two images
+    this.preloadImages();
+    
+    // Set up event listeners
+    this.setupNavigation();
+    this.setupKeyboardNav();
+    this.setupHoverPause();
+    
+    // Start autoplay
+    this.startAutoplay();
+  },
+  
+  preloadImages() {
+    // First two images are preloaded (already have src)
+    // Lazy load remaining images using IntersectionObserver
+    const lazyImages = document.querySelectorAll('.carousel-image[data-src]');
+    
+    if ('IntersectionObserver' in window) {
+      const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            if (img.dataset.src && !img.src) {
+              img.src = img.dataset.src;
+            }
+            imageObserver.unobserve(img);
+          }
+        });
+      }, { rootMargin: this.LAZY_LOAD_ROOT_MARGIN });
+      
+      lazyImages.forEach((img) => {
+        // Also preload 2nd image immediately
+        const slideIndex = Array.from(this.slides).findIndex(
+          slide => slide.contains(img)
+        );
+        if (slideIndex <= 1) {
+          if (img.dataset.src && !img.src) {
+            img.src = img.dataset.src;
+          }
+        } else {
+          imageObserver.observe(img);
+        }
+      });
+    } else {
+      // Fallback: load all images
+      lazyImages.forEach((img) => {
+        if (img.dataset.src) {
+          img.src = img.dataset.src;
+        }
+      });
+    }
+  },
+  
+  setupNavigation() {
+    const prevBtn = document.querySelector('.carousel-prev');
+    const nextBtn = document.querySelector('.carousel-next');
+    
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => this.prev());
+    }
+    
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => this.next());
+    }
+    
+    // Pagination dots
+    this.dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => this.goToSlide(index));
+    });
+  },
+  
+  setupKeyboardNav() {
+    const heroSection = document.querySelector('.hero');
+    if (!heroSection) return;
+    
+    document.addEventListener('keydown', (e) => {
+      // Only respond when hero is in viewport
+      const rect = heroSection.getBoundingClientRect();
+      const isInView = rect.top < window.innerHeight && rect.bottom > 0;
+      
+      if (!isInView) return;
+      
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        this.prev();
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        this.next();
+      }
+    });
+  },
+  
+  setupHoverPause() {
+    const carousel = document.querySelector('.hero-carousel');
+    if (!carousel) return;
+    
+    // Pause on hover
+    carousel.addEventListener('mouseenter', () => {
+      this.pause();
+    });
+    
+    carousel.addEventListener('mouseleave', () => {
+      this.resume();
+    });
+    
+    // Pause on focus (for accessibility)
+    carousel.addEventListener('focusin', () => {
+      this.pause();
+    });
+    
+    carousel.addEventListener('focusout', (e) => {
+      // Only resume if focus left the carousel completely
+      if (!carousel.contains(e.relatedTarget)) {
+        this.resume();
+      }
+    });
+  },
+  
+  goToSlide(index) {
+    if (index === this.currentIndex || index < 0 || index >= this.slides.length) return;
+    
+    // Update slides
+    const currentSlide = this.slides[this.currentIndex];
+    const nextSlide = this.slides[index];
+    
+    // Remove active from current, add prev class for exit animation
+    currentSlide.classList.remove('active');
+    currentSlide.classList.add('prev');
+    currentSlide.setAttribute('aria-hidden', 'true');
+    
+    // Add active to next slide
+    nextSlide.classList.add('active');
+    nextSlide.classList.remove('prev');
+    nextSlide.setAttribute('aria-hidden', 'false');
+    
+    // Preload next image if needed
+    const nextImg = nextSlide.querySelector('img[data-src]');
+    if (nextImg && nextImg.dataset.src && !nextImg.src) {
+      nextImg.src = nextImg.dataset.src;
+    }
+    
+    // Update dots
+    this.dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+      dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
+    });
+    
+    // Update live region for screen readers
+    this.updateLiveRegion(index);
+    
+    // Clean up prev class after transition
+    setTimeout(() => {
+      currentSlide.classList.remove('prev');
+    }, this.TRANSITION_DURATION);
+    
+    this.currentIndex = index;
+    
+    // Reset autoplay timer
+    if (!this.isPaused) {
+      this.resetAutoplay();
+    }
+  },
+  
+  next() {
+    const nextIndex = (this.currentIndex + 1) % this.slides.length;
+    this.goToSlide(nextIndex);
+  },
+  
+  prev() {
+    const prevIndex = (this.currentIndex - 1 + this.slides.length) % this.slides.length;
+    this.goToSlide(prevIndex);
+  },
+  
+  startAutoplay() {
+    if (this.autoplayInterval) return;
+    this.autoplayInterval = setInterval(() => {
+      if (!this.isPaused) {
+        this.next();
+      }
+    }, this.AUTOPLAY_DELAY);
+  },
+  
+  resetAutoplay() {
+    this.stopAutoplay();
+    this.startAutoplay();
+  },
+  
+  stopAutoplay() {
+    if (this.autoplayInterval) {
+      clearInterval(this.autoplayInterval);
+      this.autoplayInterval = null;
+    }
+  },
+  
+  pause() {
+    this.isPaused = true;
+  },
+  
+  resume() {
+    this.isPaused = false;
+  },
+  
+  updateLiveRegion(index) {
+    if (!this.liveRegion) return;
+    
+    const slide = this.slides[index];
+    const img = slide.querySelector('img');
+    const altText = img ? img.alt : '';
+    
+    // Truncate alt text for announcement
+    const shortAlt = altText.length > this.ALT_TEXT_MAX_LENGTH 
+      ? altText.substring(0, this.ALT_TEXT_MAX_LENGTH) + '...' 
+      : altText;
+    
+    this.liveRegion.textContent = `Slide ${index + 1} of ${this.slides.length}: ${shortAlt}`;
+  }
+};
+
+// Initialize carousel when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  heroCarousel.init();
+});
 
 // ========================================
 // Theme Toggle with localStorage Persistence
@@ -274,34 +522,64 @@ if (!document.getElementById('ripple-animation')) {
 // Service and Class Cards Animation on Scroll
 // ========================================
 
-const serviceCards = document.querySelectorAll('.service-card');
-const classCards = document.querySelectorAll('.class-card');
+// Check if user prefers reduced motion
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-const cardObserverOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px',
-};
-
-const cardObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry, index) => {
-    if (entry.isIntersecting && !entry.target.dataset.revealed) {
-      // Stagger animation for cards
-      setTimeout(() => {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
+/**
+ * Creates an IntersectionObserver for reveal animations
+ * @param {string} selector - CSS selector for elements to observe
+ * @param {Object} options - Observer options (threshold, rootMargin)
+ * @param {Function} onReveal - Callback when element is revealed
+ */
+function createRevealObserver(selector, options, onReveal) {
+  const elements = document.querySelectorAll(selector);
+  
+  if (prefersReducedMotion) {
+    // If reduced motion is preferred, reveal all immediately
+    elements.forEach(element => onReveal(element, 0));
+    return;
+  }
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting && !entry.target.dataset.revealed) {
+        onReveal(entry.target, index);
         entry.target.dataset.revealed = 'true';
-      }, index * 100);
-    }
-  });
-}, cardObserverOptions);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, options);
+  
+  elements.forEach(element => observer.observe(element));
+}
 
-// Initialize cards with initial state
-[...serviceCards, ...classCards].forEach((card) => {
-  card.style.opacity = '0';
-  card.style.transform = 'translateY(20px)';
-  card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-  cardObserver.observe(card);
+// Service cards reveal - using CSS classes
+createRevealObserver(
+  '.service-reveal',
+  { threshold: 0.15, rootMargin: '0px 0px -50px 0px' },
+  (element) => element.classList.add('visible')
+);
+
+// Class cards reveal - using inline styles with staggered delay
+const classCards = document.querySelectorAll('.class-card');
+classCards.forEach((card) => {
+  if (!prefersReducedMotion) {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+  }
 });
+
+createRevealObserver(
+  '.class-card',
+  { threshold: 0.1, rootMargin: '0px 0px -50px 0px' },
+  (element, index) => {
+    setTimeout(() => {
+      element.style.opacity = '1';
+      element.style.transform = 'translateY(0)';
+    }, index * 100);
+  }
+);
 
 // ========================================
 // Back to Top Button
