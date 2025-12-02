@@ -1,11 +1,5 @@
-/**
- * PowerFit Gym Website - Enhanced JavaScript
- * Features: Mobile menu toggle, Theme persistence, Scroll reveal animations, Hero Carousel
- */
 
-// ========================================
-// Hero Carousel
-// ========================================
+
 
 const heroCarousel = {
   // Configuration constants
@@ -251,9 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
   heroCarousel.init();
 });
 
-// ========================================
-// Theme Toggle with localStorage Persistence
-// ========================================
+// Theme Toggle with localStorage Persistenc
 
 const themeToggle = document.getElementById('themeToggle');
 const themeIcon = document.querySelector('.theme-icon');
@@ -283,9 +275,7 @@ function updateThemeIcon(theme) {
   }
 }
 
-// ========================================
-// Mobile Menu Toggle with Accessibility
-// ========================================
+
 
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('navMenu');
@@ -325,9 +315,7 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// ========================================
-// Scroll Reveal Animation
-// ========================================
+
 
 // Debounce function for better performance
 function debounce(func, wait = 20, immediate = true) {
@@ -363,9 +351,7 @@ function revealOnScroll() {
 window.addEventListener('load', revealOnScroll);
 window.addEventListener('scroll', debounce(revealOnScroll, 20));
 
-// ========================================
-// Enhanced Navbar Scroll Effect
-// ========================================
+
 
 let lastScroll = 0;
 const header = document.querySelector('.header');
@@ -383,9 +369,7 @@ window.addEventListener('scroll', debounce(() => {
   lastScroll = currentScroll;
 }, 20));
 
-// ========================================
-// Counter Animation for Stats
-// ========================================
+
 
 // Counter animation constants
 const ANIMATION_STEPS = 50;
@@ -433,9 +417,7 @@ if (document.querySelector('.stat-number')) {
   animateCounter();
 }
 
-// ========================================
-// Contact Form Handling
-// ========================================
+
 
 const contactForm = document.getElementById('contactForm');
 
@@ -462,9 +444,6 @@ if (contactForm) {
   });
 }
 
-// ========================================
-// Membership Button Click Handling
-// ========================================
 
 const membershipBtns = document.querySelectorAll('.membership-btn');
 
@@ -518,9 +497,7 @@ if (!document.getElementById('ripple-animation')) {
   document.head.appendChild(style);
 }
 
-// ========================================
-// Service and Class Cards Animation on Scroll
-// ========================================
+
 
 // Check if user prefers reduced motion
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -581,9 +558,7 @@ createRevealObserver(
   }
 );
 
-// ========================================
-// Back to Top Button
-// ========================================
+
 
 function createBackToTopBtn() {
   // Only create if it doesn't exist
@@ -643,9 +618,7 @@ function createBackToTopBtn() {
   });
 }
 
-// ========================================
-// Initialize Everything on DOMContentLoaded
-// ========================================
+
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('💪 PowerFit Gym Website Loaded Successfully!');
@@ -657,9 +630,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeout(revealOnScroll, 100);
 });
 
-// ========================================
-// Performance: Lazy Loading for Future Images
-// ========================================
+
 
 if ('IntersectionObserver' in window) {
   const imageObserver = new IntersectionObserver((entries) => {
@@ -681,9 +652,7 @@ if ('IntersectionObserver' in window) {
   });
 }
 
-// ========================================
-// Accessibility: Focus Management
-// ========================================
+
 
 // Add visible focus indicator for keyboard navigation
 document.addEventListener('keydown', (e) => {
