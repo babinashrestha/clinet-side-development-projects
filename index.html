@@ -164,38 +164,53 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact reveal">
-      <div class="container">
-        <h2 class="section-title">Get In Touch</h2>
-        <div class="contact-content">
-          <div class="contact-info">
-            <div class="info-card card">
-              <h4>📍 Address</h4>
-              <p>123 Fitness Street<br>Manchester, UK M1 5AN</p>
-            </div>
-            <div class="info-card card">
-              <h4>📞 Phone</h4>
-              <p>+44 (0)161 123 4567</p>
-            </div>
-            <div class="info-card card">
-              <h4>✉️ Email</h4>
-              <p>info@powerfit.co.uk</p>
-            </div>
-            <div class="info-card card">
-              <h4>🕐 Hours</h4>
-              <p>Mon-Fri: 6:00 AM - 10:00 PM<br>Sat-Sun: 8:00 AM - 8:00 PM</p>
-            </div>
-          </div>
-          <form class="contact-form" id="contactForm">
-            <input type="text" placeholder="Your Name" required aria-label="Your name">
-            <input type="email" placeholder="Your Email" required aria-label="Your email address">
-            <textarea placeholder="Your Message" rows="5" required aria-label="Your message"></textarea>
-            <button type="submit" class="btn submit-btn">Send Message</button>
-          </form>
+<section id="contact" class="contact reveal">
+  <div class="container">
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="contact-content">
+      <div class="contact-info">
+        <div class="info-card card">
+          <h4>📍 Address</h4>
+          <p>123 Fitness Street<br>Manchester, UK M1 5AN</p>
+        </div>
+        <div class="info-card card">
+          <h4>📞 Phone</h4>
+          <p>+44 (0)161 123 4567</p>
+        </div>
+        <div class="info-card card">
+          <h4>✉️ Email</h4>
+          <p>info@powerfit.co.uk</p>
+        </div>
+        <div class="info-card card">
+          <h4>🕐 Hours</h4>
+          <p>Mon-Fri: 6:00 AM - 10:00 PM<br>Sat-Sun: 8:00 AM - 8:00 PM</p>
         </div>
       </div>
-    </section>
-  </main>
+
+      <form class="contact-form" id="contactForm">
+        <input type="text" id="name" placeholder="Your Name" required aria-label="Your name">
+        <input type="email" placeholder="Your Email" required aria-label="Your email address">
+        <textarea placeholder="Your Message" rows="5" required aria-label="Your message"></textarea>
+        <button type="submit" class="btn submit-btn">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  const nameField = document.getElementById("name");
+
+  // Block numbers while typing
+  nameField.addEventListener("input", function () {
+    this.value = this.value.replace(/[0-9]/g, "");
+  });
+
+  // Show thank you on submit
+  document.getElementById("contactForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    alert("Thank you, we will reach to you soon!");
+  });
+</script>
 
   <!-- Footer -->
   <footer class="footer">
@@ -211,5 +226,6 @@
 
   <script src="script.js"></script>
 </body>
+
 
 </html>
