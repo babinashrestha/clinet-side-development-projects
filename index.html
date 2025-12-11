@@ -41,99 +41,92 @@
   <!-- Main Content -->
   <main>
     <!-- Hero Section with Image Carousel -->
-    <!--
-      Image Attribution (Unsplash - Free to use):
-      1. Victor Freitas - https://unsplash.com/photos/U5kQvbQWoG0
-      2. John Arano - https://unsplash.com/photos/CQfNt66ttZM
-      3. Jelmer Assink - https://unsplash.com/photos/oGpd0gFpYDg
-      4. Geert Pieters - https://unsplash.com/photos/Tzm3Oyu_6sk
-      5. Chander R - https://unsplash.com/photos/PHIgYUGQPvU
-    -->
-    <section id="home" class="hero reveal" role="region" aria-label="Gym hero carousel">
-      <div class="hero-carousel">
-        <!-- Smoke Effect Overlay -->
-        <div class="hero-smoke hero-smoke-left" aria-hidden="true"></div>
-        <div class="hero-smoke hero-smoke-right" aria-hidden="true"></div>
-        
-        <!-- Carousel Slides -->
-        <div class="carousel-slides">
-          <div class="carousel-slide active" aria-hidden="false">
-            <img 
-              src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80" 
-              alt="Modern gym equipment with dumbbells and weight racks in a professional fitness facility"
-              class="carousel-image"
-            >
+  
+      <section id="home" class="hero reveal" role="region" aria-label="Gym hero carousel">
+        <div class="hero-carousel">
+          <!-- Smoke Effect Overlay -->
+          <div class="hero-smoke hero-smoke-left" aria-hidden="true"></div>
+          <div class="hero-smoke hero-smoke-right" aria-hidden="true"></div>
+          
+          <!-- Carousel Slides -->
+          <div class="carousel-slides">
+            <div class="carousel-slide active" aria-hidden="false">
+              <img 
+                src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80" 
+                alt="Modern gym equipment with dumbbells and weight racks in a professional fitness facility"
+                class="carousel-image"
+              >
+            </div>
+            <div class="carousel-slide" aria-hidden="true">
+              <img 
+                data-src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1920&q=80" 
+                alt="Athlete performing intense workout with battle ropes in a gym"
+                class="carousel-image"
+                loading="lazy"
+              >
+            </div>
+            <div class="carousel-slide" aria-hidden="true">
+              <img 
+                data-src="https://images.unsplash.com/photo-1581009146145-b5ef050c149a?w=1920&q=80" 
+                alt="Person doing weight training with barbell in fitness center"
+                class="carousel-image"
+                loading="lazy"
+              >
+            </div>
+            <div class="carousel-slide" aria-hidden="true">
+              <img 
+                data-src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1920&q=80" 
+                alt="Group fitness class with people exercising together"
+                class="carousel-image"
+                loading="lazy"
+              >
+            </div>
+            <div class="carousel-slide" aria-hidden="true">
+              <img 
+                data-src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=1920&q=80" 
+                alt="Person running on treadmill in modern gym with cardio equipment"
+                class="carousel-image"
+                loading="lazy"
+              >
+            </div>
           </div>
-          <div class="carousel-slide" aria-hidden="true">
-            <img 
-              data-src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1920&q=80" 
-              alt="Athlete performing intense workout with battle ropes in a gym"
-              class="carousel-image"
-              loading="lazy"
-            >
+          
+          <!-- Carousel Overlay for text contrast -->
+          <div class="hero-overlay"></div>
+          
+          <!-- Navigation Arrows -->
+          <button class="carousel-nav carousel-prev" aria-label="Previous slide" type="button">
+            <span aria-hidden="true">&#10094;</span>
+          </button>
+          <button class="carousel-nav carousel-next" aria-label="Next slide" type="button">
+            <span aria-hidden="true">&#10095;</span>
+          </button>
+          
+          <!-- Pagination Dots -->
+          <div class="carousel-pagination" role="tablist" aria-label="Carousel slide indicators">
+            <button class="carousel-dot active" role="tab" aria-selected="true" aria-label="Slide 1" type="button"></button>
+            <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Slide 2" type="button"></button>
+            <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Slide 3" type="button"></button>
+            <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Slide 4" type="button"></button>
+            <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Slide 5" type="button"></button>
           </div>
-          <div class="carousel-slide" aria-hidden="true">
-            <img 
-              data-src="https://images.unsplash.com/photo-1581009146145-b5ef050c149a?w=1920&q=80" 
-              alt="Person doing weight training with barbell in fitness center"
-              class="carousel-image"
-              loading="lazy"
-            >
-          </div>
-          <div class="carousel-slide" aria-hidden="true">
-            <img 
-              data-src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1920&q=80" 
-              alt="Group fitness class with people exercising together"
-              class="carousel-image"
-              loading="lazy"
-            >
-          </div>
-          <div class="carousel-slide" aria-hidden="true">
-            <img 
-              data-src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=1920&q=80" 
-              alt="Person running on treadmill in modern gym with cardio equipment"
-              class="carousel-image"
-              loading="lazy"
-            >
+          
+          <!-- Live Region for Screen Readers -->
+          <div class="carousel-live-region visually-hidden" aria-live="polite" aria-atomic="true">
+            Slide 1 of 5: Modern gym equipment with dumbbells and weight racks
           </div>
         </div>
         
-        <!-- Carousel Overlay for text contrast -->
-        <div class="hero-overlay"></div>
-        
-        <!-- Navigation Arrows -->
-        <button class="carousel-nav carousel-prev" aria-label="Previous slide" type="button">
-          <span aria-hidden="true">&#10094;</span>
-        </button>
-        <button class="carousel-nav carousel-next" aria-label="Next slide" type="button">
-          <span aria-hidden="true">&#10095;</span>
-        </button>
-        
-        <!-- Pagination Dots -->
-        <div class="carousel-pagination" role="tablist" aria-label="Carousel slide indicators">
-          <button class="carousel-dot active" role="tab" aria-selected="true" aria-label="Slide 1" type="button"></button>
-          <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Slide 2" type="button"></button>
-          <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Slide 3" type="button"></button>
-          <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Slide 4" type="button"></button>
-          <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Slide 5" type="button"></button>
+        <!-- Hero Content (Text Overlay) -->
+        <div class="hero-content container">
+          <div class="hero-text">
+            <h1 class="hero-title">Transform Your Body</h1>
+            <p class="hero-subtitle">Build strength, confidence, and a healthier lifestyle at PowerFit</p>
+            <button class="btn cta-btn" onclick="document.getElementById('membership').scrollIntoView({behavior: 'smooth'})">Get
+              Started Today</button>
+          </div>
         </div>
-        
-        <!-- Live Region for Screen Readers -->
-        <div class="carousel-live-region visually-hidden" aria-live="polite" aria-atomic="true">
-          Slide 1 of 5: Modern gym equipment with dumbbells and weight racks
-        </div>
-      </div>
-      
-      <!-- Hero Content (Text Overlay) -->
-      <div class="hero-content container">
-        <div class="hero-text">
-          <h1 class="hero-title">Transform Your Body</h1>
-          <p class="hero-subtitle">Build strength, confidence, and a healthier lifestyle at PowerFit</p>
-          <button class="btn cta-btn" onclick="document.getElementById('membership').scrollIntoView({behavior: 'smooth'})">Get
-            Started Today</button>
-        </div>
-      </div>
-    </section>
+      </section>
 
     <!-- Services Section -->
     <section id="services" class="services reveal">
